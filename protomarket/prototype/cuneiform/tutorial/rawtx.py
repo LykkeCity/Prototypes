@@ -1,0 +1,21 @@
+"""
+step 4:
+raw transaction info
+"""
+
+import os,sys,inspect
+currentdir = os.path.dirname(os.path.abspath(inspect.getfile(inspect.currentframe())))
+#parentdir = os.path.dirname(currentdir)
+#print parentdir
+#sys.path.insert(0,parentdir)
+#parentpath = os.path.join(sys.path[0], '..')
+#print parentpath
+#sys.path.insert(1, parentpath)
+#sys.path.insert(0,'../..')
+
+import pybitcointools
+import pprint
+
+tx = '0100000002a0ae9d839ed51c9d6d299b2b3c508b935858371b283bcb1e953bc776f61c6c75000000008c493046022100b999de2e23127ec2edf16e2f267b4c2df57b9766059369cee85cbc0a41be6882022100d09c405f825eec986ca2bf6f35d1267ad7d595042fca4b4f7af3f9adfea68d330141040bf69616981e5970c992a0762f441abcadfed9fc4630fa5e1b82ab00e81d16905d3820e073e1bd4a9dcfed336f4bf25edc634c2e174989767d299748359c2dafffffffff52be06c2c43c4d0ec3c208b8b8ddbcb32ac4fdb3481addfb90498267df3ba07b010000008b48304502201193da6f0c1b3f15497415fd75743439374939191331bd7ca1ac183580ad4273022100e435bd3c48929d9789810634af47a0461e684dd490132a9c5757af86296ce0d70141046cc9eeffe66726abb725d191537f87c023202eb13ede9031d7adb80ecb0ddc9aa380cb2659747b850ea577cf04f01248ca9291976523a94ef0a907e6bb15bd55ffffffff02e0c03b00000000001976a914e1e1ffc33423807d6914de976738bbdc01477c2d88ac8c2e0100000000001976a91419e75cce5ff697a01e14ec3ebcc9a4523e44caf188ac00000000'
+tx_structure = pybitcointools.deserialize(tx)
+pprint.pprint(tx_structure)
