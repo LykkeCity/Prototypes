@@ -10,8 +10,7 @@ import datetime
 import binascii
 
 bitcoinLayer = bitcoin.rpc.Proxy()
-h = bitcoinLayer.getblockhash(1)
-print h
+
 
 def dateString(utime):
     dateFormat = '%Y-%m-%d'
@@ -23,9 +22,11 @@ def blocksinfo(i):
     h = bitcoinLayer.getblockhash(1)
     block = bitcoinLayer.getblock(h)
     numTx = len(block.vtx)
-    print (block)
-    s = ('%i %s %s %s'%(i,dateString(block.nTime),block.difficulty, numTx))
-    return str(h)
+    s = ""
+    for i in range(1,100,1):
+        print (block)
+        s += ('%i %s %s %s'%(i,dateString(block.nTime),block.difficulty, numTx))
+    return s
     #return 'test'
 
 @app.route('/')
