@@ -3,6 +3,9 @@ minimal python flask app
 """
 
 from flask import Flask
+from flask import Flask, request, session, g, redirect, url_for, abort, \
+     render_template, flash
+
 app = Flask(__name__)
 
 import bitcoin.rpc
@@ -11,27 +14,30 @@ import binascii
 
 bitcoinLayer = bitcoin.rpc.Proxy()
 
-
 def dateString(utime):
     dateFormat = '%Y-%m-%d'
     return datetime.datetime.fromtimestamp(int(utime)).strftime(dateFormat)
 
-def blocksinfo(i):
-    """ blocks info """
-    i = 1
+
+def blocksinfo():
+    ''' blocks info '''
+
     h = bitcoinLayer.getblockhash(1)
     block = bitcoinLayer.getblock(h)
     numTx = len(block.vtx)
-    s = "Blocks\n"
+    blocks = []
     for i in range(1,1440,144):
-        s += ('%i %s %s %s\n'%(i,dateString(block.nTime),block.difficulty, numTx))
-    return s
+        blocks.append('%i %s %s %s\n'%(i,dateString(block.nTime),block.difficulty, numTx))
+    return blocks
 
 
 @app.route('/')
-def hello_world():
-    info = blocksinfo(1)
-    return info
+def getblockinfo():
+    blocks = blocksinfo()
+    #print blocks
+    return render_template('blocks.html', blocks=blocks)
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0',port=80)
+    app.run(host='0.0.0.0',port=8080)
+    #blocks = blocksinfo(1)
+    #print blocks
