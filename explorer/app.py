@@ -22,12 +22,11 @@ def blocksinfo(i):
     h = bitcoinLayer.getblockhash(1)
     block = bitcoinLayer.getblock(h)
     numTx = len(block.vtx)
-    s = ""
-    for i in range(1,100,1):
-        print (block)
-        s += ('%i %s %s %s'%(i,dateString(block.nTime),block.difficulty, numTx))
+    s = "Blocks\n"
+    for i in range(1,1440,144):
+        s += ('%i %s %s %s\n'%(i,dateString(block.nTime),block.difficulty, numTx))
     return s
-    #return 'test'
+
 
 @app.route('/')
 def hello_world():
