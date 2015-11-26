@@ -20,17 +20,19 @@ def dateString(utime):
 
 def blockinfo():
     """ info about one block """
-    numTx = len(block.vtx)
+
     h = bitcoinLayer.getblockhash(i)
     block = bitcoinLayer.getblock(h)
-    infostr = '%i %s %s %s\n'%(i,dateString(block.nTime),block.difficulty, numTx)
-    return infostr
+    #numTx = len(block.vtx)
+    #infostr = '%i %s %s %s\n'%(i,dateString(block.nTime),block.difficulty, numTx)
+    return {'date':dateString(block.nTime),'difficulty':block.difficulty,'numtx':len(block.vtx)}
 
 def listblocksinfo():
     ''' info about list of blocks '''
 
     blocks = []
-    for i in range(1,1440,144):
+    maxblock = 144*365*3
+    for i in range(1,maxblock,144):
         blocks.append(blockinfo(i))
     return blocks
 
