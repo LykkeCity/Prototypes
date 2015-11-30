@@ -1,6 +1,6 @@
 
 from pybitcointools.main import *
-from btcextra import keyUtils
+from bitcoinhw import keyUtils
 
 #priv = sha256('yoyo')
 private_key = ''.join(['%x' % random.randrange(16) for x in range(0, 64)])
