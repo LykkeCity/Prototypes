@@ -1,0 +1,1 @@
+This project is the code for POC submission phase for the user bijak: https://wiki.lykkex.com/competition/lykkedesign/bijak/poc
